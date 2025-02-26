@@ -1,20 +1,55 @@
-<script src="https://cdn.tailwindcss.com"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-<style>
-  @font-face {
-    font-family: 'Kefir';
-    src: url('Kefir-DemiBold.woff') format('woff');
-    font-weight: 600;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'Kefir';
-    src: url('Kefir-Medium.woff') format('woff');
-    font-weight: 500;
-    font-style: normal;
-  }
-</style>
-<div class="bg-white" x-data="{ scrollToContact() { document.getElementById('contact-section').scrollIntoView({ behavior: 'smooth' }); } }">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sunset Labs | Brisbane Web Design & Development Studio</title>
+  <!-- Primary Meta Tags -->
+  <meta name="description" content="Brisbane-based creative studio delivering exceptional web design, graphic design, and IT services. Transform your online presence with our stunning, functional websites.">
+  <meta name="keywords" content="web design, web development, Brisbane, creative studio, website design, graphic design, IT services, responsive design, SEO">
+  <meta name="author" content="Sunset Labs">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sunsetlabs.com.au/">
+  <meta property="og:title" content="Sunset Labs | Brisbane Web Design & Development Studio">
+  <meta property="og:description" content="Brisbane-based creative studio delivering exceptional web design, graphic design, and IT services. Transform your online presence with us.">
+  <meta property="og:image" content="https://sunsetlabs.com.au/hero-1.png">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://sunsetlabs.com.au/">
+  <meta property="twitter:title" content="Sunset Labs | Brisbane Web Design & Development Studio">
+  <meta property="twitter:description" content="Brisbane-based creative studio delivering exceptional web design, graphic design, and IT services. Transform your online presence with us.">
+  <meta property="twitter:image" content="https://sunsetlabs.com.au/hero-1.png">
+  
+  <!-- Canonical Link -->
+  <meta rel="canonical" href="https://sunsetlabs.com.au/">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  
+  <!-- Scripts and Styles -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    @font-face {
+      font-family: 'Kefir';
+      src: url('Kefir-DemiBold.woff') format('woff');
+      font-weight: 600;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Kefir';
+      src: url('Kefir-Medium.woff') format('woff');
+      font-weight: 500;
+      font-style: normal;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-white" x-data="{ scrollToContact() { document.getElementById('contact-section').scrollIntoView({ behavior: 'smooth' }); } }">
     <!-- Header -->
     <header class="absolute inset-x-0 top-0 z-50">
       <nav class="mx-auto flex max-w-7xl items-center justify-between p-12 lg:px-8" aria-label="Global">
@@ -233,54 +268,56 @@
     </footer>
   </div>
 
-<script>
-const form = document.getElementById('form');
-const result = document.getElementById('result');
+  <script>
+    const form = document.getElementById('form');
+    const result = document.getElementById('result');
 
-form.addEventListener('submit', function(e) {
-    const formData = new FormData(form);
-    e.preventDefault();
+    form.addEventListener('submit', function(e) {
+        const formData = new FormData(form);
+        e.preventDefault();
 
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
 
-    result.innerHTML = "Sending...";
-    result.style.display = "block";
-    result.classList.add("text-gray-500");
-    result.classList.remove("text-green-500", "text-red-500");
+        result.innerHTML = "Sending...";
+        result.style.display = "block";
+        result.classList.add("text-gray-500");
+        result.classList.remove("text-green-500", "text-red-500");
 
-    fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: json
-        })
-        .then(async (response) => {
-          let json = await response.json();
-          if (response.status == 200) {
-            result.innerHTML = "Your message has been sent! We'll get back to you within 12 hours.";
-            result.classList.remove("text-gray-500");
-            result.classList.add("text-green-500");
-          } else {
-            console.log(response);
-            result.innerHTML = json.message;
-            result.classList.remove("text-gray-500");
-            result.classList.add("text-red-500");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          result.innerHTML = "Something went wrong!";
-          result.classList.remove("text-gray-500");
-          result.classList.add("text-red-500");
-        })
-        .then(function() {
-            form.reset();
-            setTimeout(() => {
-                result.style.display = "none";
-            }, 3000);
-        });
-});
-</script>
+        fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+              let json = await response.json();
+              if (response.status == 200) {
+                result.innerHTML = "Your message has been sent! We'll get back to you within 12 hours.";
+                result.classList.remove("text-gray-500");
+                result.classList.add("text-green-500");
+              } else {
+                console.log(response);
+                result.innerHTML = json.message;
+                result.classList.remove("text-gray-500");
+                result.classList.add("text-red-500");
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+              result.innerHTML = "Something went wrong!";
+              result.classList.remove("text-gray-500");
+              result.classList.add("text-red-500");
+            })
+            .then(function() {
+                form.reset();
+                setTimeout(() => {
+                    result.style.display = "none";
+                }, 3000);
+            });
+    });
+  </script>
+</body>
+</html>
